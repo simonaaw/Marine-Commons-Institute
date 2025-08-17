@@ -512,7 +512,7 @@
             margin-right: auto;
         }
 
-        .why-approach-works {
+        .unique-advantages {
             margin-top: 4rem;
             padding: 3rem;
             background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400"><rect width="100%" height="100%" fill="%23e6f3ff"/><circle cx="100" cy="100" r="40" fill="%23cce6ff" opacity="0.4"/><circle cx="500" cy="300" r="50" fill="%23b3d9ff" opacity="0.3"/><path d="M0,200 Q150,150 300,200 T600,200" stroke="%23b3d9ff" stroke-width="3" fill="none" opacity="0.5"/><path d="M0,250 Q150,200 300,250 T600,250" stroke="%23cce6ff" stroke-width="2" fill="none" opacity="0.4"/></svg>');
@@ -522,7 +522,7 @@
             position: relative;
         }
 
-        .why-approach-works::before {
+        .unique-advantages::before {
             content: '';
             position: absolute;
             top: 0;
@@ -533,66 +533,110 @@
             border-radius: 15px;
         }
 
-        .why-approach-works > * {
+        .unique-advantages > * {
             position: relative;
             z-index: 1;
         }
 
-        .why-approach-works h3 {
+        .unique-advantages h3 {
             color: #004499;
             text-align: center;
             margin-bottom: 2rem;
             font-size: 1.8rem;
         }
 
-        .approach-benefits {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+        .advantages-grid {
+            display: flex;
+            justify-content: space-between;
+            gap: 1.5rem;
+            flex-wrap: wrap;
         }
 
-        .benefit-item {
+        .advantage-item {
             background: rgba(255, 255, 255, 0.9);
             padding: 1.5rem;
             border-radius: 10px;
             border-left: 4px solid #0099cc;
+            flex: 1;
+            min-width: 220px;
+            max-width: 280px;
         }
 
-        .benefit-item h4 {
+        .advantage-item h4 {
             color: #004499;
             margin-bottom: 0.5rem;
             font-size: 1.1rem;
         }
 
-        .benefit-item p {
+        .advantage-item p {
             color: #555;
             line-height: 1.6;
             font-size: 0.95rem;
         }
         .challenge-content {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
             margin-top: 3rem;
         }
 
         .challenge-text {
-            background: rgba(255, 255, 255, 0.8);
-            padding: 2rem;
-            border-radius: 15px;
-            border-left: 4px solid #0099cc;
-            box-shadow: 0 3px 15px rgba(0, 102, 204, 0.1);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 252, 255, 0.95));
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid #e6f3ff;
+            box-shadow: 0 8px 25px rgba(0, 102, 204, 0.08);
+            position: relative;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .challenge-text::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(45deg, #0099cc, #00cc99);
+        }
+
+        .challenge-text:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0, 102, 204, 0.12);
+        }
+
+        .challenge-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            text-align: center;
         }
 
         .challenge-text h3 {
             color: #004499;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            text-align: center;
+            font-weight: 600;
         }
 
         .challenge-text p {
             line-height: 1.8;
             color: #555;
+            text-align: justify;
+        }
+
+        .challenge-highlight {
+            background: linear-gradient(120deg, #fff5e6, #ffe6cc);
+            border: 1px solid #ffcc99;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            border-radius: 10px;
+            font-style: italic;
+            color: #cc6600;
+            text-align: center;
+            font-weight: 500;
         }
         .features-grid {
             display: grid;
@@ -627,21 +671,27 @@
             font-size: 1.3rem;
         }
 
-        /* Process Steps */
+        /* Process Steps - Horizontal Flow */
         .workflow-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
             margin-top: 3rem;
+            overflow-x: auto;
+            padding: 1rem 0;
         }
 
         .step {
             text-align: center;
-            padding: 2rem;
+            padding: 1.5rem;
             background: linear-gradient(135deg, #f0f8ff, #e6f3ff);
             border-radius: 15px;
             position: relative;
             transition: all 0.3s ease;
+            min-width: 200px;
+            flex: 1;
+            max-width: 220px;
         }
 
         .step:hover {
@@ -652,15 +702,35 @@
         .step-number {
             background: linear-gradient(45deg, #0099cc, #00cc99);
             color: white;
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin: 0 auto 1rem;
+        }
+
+        .step h4 {
+            color: #004499;
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .step p {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .workflow-arrow {
+            font-size: 1.5rem;
+            color: #0099cc;
+            font-weight: bold;
+            flex-shrink: 0;
         }
 
         /* Field Kit Components */
@@ -869,7 +939,27 @@
             }
 
             .workflow-steps {
-                grid-template-columns: 1fr;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .workflow-arrow {
+                transform: rotate(90deg);
+                margin: 0.5rem 0;
+            }
+
+            .step {
+                min-width: 250px;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .advantages-grid {
+                flex-direction: column;
+            }
+
+            .advantage-item {
+                max-width: 100%;
             }
 
             .section {
@@ -1053,24 +1143,24 @@
             </div>
         </div>
 
-        <div class="why-approach-works">
-            <h3>Why This Approach Works</h3>
-            <div class="approach-benefits">
-                <div class="benefit-item">
-                    <h4>Cost-Effective & Scalable</h4>
-                    <p>Less expensive than traditional monitoring systems, ideal for widespread deployment with limited conservation budgets. Perfect for schools, NGOs, and developing nations.</p>
+        <div class="unique-advantages">
+            <h3>What Makes MAC Unique</h3>
+            <div class="advantages-grid">
+                <div class="advantage-item">
+                    <h4>Revolutionary Access</h4>
+                    <p>Breakthrough technology at student fingertips - transforming cutting-edge marine science from exclusive research labs into accessible classroom experiences.</p>
                 </div>
-                <div class="benefit-item">
-                    <h4>Accessible & Portable</h4>
-                    <p>Fully portable and operational off-grid, making it ideal for island states, rural fishing villages, and areas with weak infrastructure.</p>
+                <div class="advantage-item">
+                    <h4>Global Impact</h4>
+                    <p>Local data feeds worldwide conservation efforts - every student sample contributes to global biodiversity tracking and international reporting frameworks.</p>
                 </div>
-                <div class="benefit-item">
-                    <h4>Comprehensive & Rapid</h4>
-                    <p>Detects species often missed by traditional methods while enabling near real-time detection of pollution, invasive species, and habitat changes.</p>
+                <div class="advantage-item">
+                    <h4>Future-Ready Skills</h4>
+                    <p>Students master AI, genomics, and data science through real ocean research - building expertise for tomorrow's conservation careers.</p>
                 </div>
-                <div class="benefit-item">
-                    <h4>Globally Connected</h4>
-                    <p>Contributes to global biodiversity databases and supports international reporting frameworks, fostering regional cooperation and knowledge sharing.</p>
+                <div class="advantage-item">
+                    <h4>Immediate Results</h4>
+                    <p>See biodiversity discoveries in real-time, not months later - instant gratification fuels sustained engagement and scientific curiosity.</p>
                 </div>
             </div>
         </div>
@@ -1173,21 +1263,33 @@
                 <h4>Field Collection</h4>
                 <p>Students collect water samples containing eDNA from local waters using portable field kits</p>
             </div>
+            
+            <div class="workflow-arrow">→</div>
+            
             <div class="step">
                 <div class="step-number">2</div>
                 <h4>Lab Processing</h4>
                 <p>Filter water and extract DNA with simple kits, guided by mentors for proper technique</p>
             </div>
+            
+            <div class="workflow-arrow">→</div>
+            
             <div class="step">
                 <div class="step-number">3</div>
                 <h4>DNA Sequencing</h4>
                 <p>Use handheld Oxford Nanopore sequencer to read DNA samples in real-time</p>
             </div>
+            
+            <div class="workflow-arrow">→</div>
+            
             <div class="step">
                 <div class="step-number">4</div>
                 <h4>Cloud Analysis</h4>
                 <p>Upload data to UCSD-hosted cloud lab for AI-powered species identification</p>
             </div>
+            
+            <div class="workflow-arrow">→</div>
+            
             <div class="step">
                 <div class="step-number">5</div>
                 <h4>Data Visualization</h4>
