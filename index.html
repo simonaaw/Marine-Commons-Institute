@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marine AI Consortium - Empowering Ocean Stewards</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header and Navigation */
+        .header {
+            background: linear-gradient(135deg, #0066cc, #004499);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #66ccff;
+        }
+
+        /* Hero Section with Video Background */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -2;
+            transform: translateX(-50%) translateY(-50%);
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                rgba(0, 102, 204, 0.6), 
+                rgba(0, 68, 153, 0.7)
+            );
+            z-index: -1;
+        }
+
+        .hero-fallback {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 102, 204, 0.8), rgba(0, 68, 153, 0.9)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="waves" patternUnits="userSpaceOnUse" width="100" height="20"><path d="M0 10 Q25 0 50 10 T100 10" stroke="%23ffffff" stroke-width="0.5" fill="none" opacity="0.3"/></pattern></defs><rect width="100%" height="100%" fill="%23004499"/><rect width="100%" height="100%" fill="url(%23waves)"/></svg>');
+            background-size: cover;
+            background-position: center;
+            z-index: -3;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #00cc99, #0099cc);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 153, 204, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 153, 204, 0.4);
+        }
+
+        /* Video Controls - Removed */
+
+        /* Main Content Sections */
+        .section {
+            padding: 5rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #004499;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(45deg, #00cc99, #0099cc);
+        }
+
+        /* Initiative Section */
+        .initiative-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .initiative-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* General highlight boxes */
+        .highlight {
+            background: linear-gradient(120deg, #e6f3ff, #cce6ff);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid #0099cc;
+        }
+
+        .vision-box {
+            position: relative;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="100%" height="100%" fill="%23e6f3ff"/><circle cx="80" cy="60" r="20" fill="%23cce6ff" opacity="0.3"/><circle cx="320" cy="180" r="30" fill="%23b3d9ff" opacity="0.3"/><path d="M0,150 Q100,100 200,150 T400,150" stroke="%23b3d9ff" stroke-width="2" fill="none" opacity="0.4"/></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .vision-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(230, 243, 255, 0.8);
+            border-radius: 15px;
+        }
+
+        .vision-box > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Challenge Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 102, 204, 0.1);
+            text-align: center;
+            border: 1px solid #e6f3ff;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 102, 204, 0.15);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #0066cc;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Theory of Change Horizontal Styles */
+        .theory-of-change-container {
+            margin-top: 4rem;
+            padding: 3rem;
+            background: rgba(240, 248, 255, 0.5);
+            border-radius: 15px;
+            border: 1px solid #e6f3ff;
+        }
+
+        .theory-of-change-container h3 {
+            color: #004499;
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .theory-flow {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            overflow-x: auto;
+            padding: 1rem 0;
+        }
+
+        .toc-stage-horizontal {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            min-width: 180px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 102, 204, 0.1);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .toc-stage-horizontal:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 102, 204, 0.15);
+        }
+
+        .toc-stage-number {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #0099cc, #00cc99);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+            font-size: 1rem;
+        }
+
+        .toc-stage-horizontal h4 {
+            color: #004499;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .toc-stage-horizontal ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .toc-stage-horizontal li {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .flow-arrow {
+            font-size: 1.5rem;
+            color: #0099cc;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* Stage-specific colors */
+        .baseline {
+            border-color: #999;
+        }
+        .baseline .toc-stage-number {
+            background: linear-gradient(45deg, #666, #888);
+        }
+
+        .inputs {
+            border-color: #0066cc;
+        }
+        .inputs .toc-stage-number {
+            background: linear-gradient(45deg, #0066cc, #0088dd);
+        }
+
+        .activities {
+            border-color: #0088dd;
+        }
+        .activities .toc-stage-number {
+            background: linear-gradient(45deg, #0088dd, #00aaee);
+        }
+
+        .outputs {
+            border-color: #00aaee;
+        }
+        .outputs .toc-stage-number {
+            background: linear-gradient(45deg, #00aaee, #00ccff);
+        }
+
+        .outcomes {
+            border-color: #00cc99;
+        }
+        .outcomes .toc-stage-number {
+            background: linear-gradient(45deg, #00cc99, #00ddaa);
+        }
+
+        .impact {
+            border-color: #00aa88;
+        }
+        .impact .toc-stage-number {
+            background: linear-gradient(45deg, #00aa88, #00cc99);
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .theory-flow {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .flow-arrow {
+                transform: rotate(90deg);
+                margin: 0.5rem 0;
+            }
+
+            .toc-stage-horizontal {
+                min-width: 250px;
+                width: 100%;
+            }
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 102, 204, 0.1);
+            border: 1px solid #e6f3ff;
+            transition: all 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 102, 204, 0.15);
+        }
+
+        .team-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #0099cc, #00cc99);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .team-info h4 {
+            color: #004499;
+            margin-bottom: 0.3rem;
+            font-size: 1.3rem;
+        }
+
+        .team-role {
+            color: #0099cc;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .team-org {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .team-description {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .team-contact a {
+            color: #0099cc;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .team-contact a:hover {
+            text-decoration: underline;
+        }
+        .approach-intro {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            color: #555;
+            line-height: 1.8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .unique-advantages {
+            margin-top: 4rem;
+            padding: 3rem;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400"><rect width="100%" height="100%" fill="%23e6f3ff"/><circle cx="100" cy="100" r="40" fill="%23cce6ff" opacity="0.4"/><circle cx="500" cy="300" r="50" fill="%23b3d9ff" opacity="0.3"/><path d="M0,200 Q150,150 300,200 T600,200" stroke="%23b3d9ff" stroke-width="3" fill="none" opacity="0.5"/><path d="M0,250 Q150,200 300,250 T600,250" stroke="%23cce6ff" stroke-width="2" fill="none" opacity="0.4"/></svg>');
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .unique-advantages::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(230, 243, 255, 0.85);
+            border-radius: 15px;
+        }
+
+        .unique-advantages > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .unique-advantages h3 {
+            color: #004499;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+
+        .advantages-grid {
+            display: flex;
+            justify-content: space-between;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .advantage-item {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #0099cc;
+            flex: 1;
+            min-width: 220px;
+            max-width: 280px;
+        }
+
+        .advantage-item h4 {
+            color: #004499;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .advantage-item p {
+            color: #555;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        .challenge-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .challenge-text {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 252, 255, 0.95));
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid #e6f3ff;
+            box-shadow: 0 8px 25px rgba(0, 102, 204, 0.08);
+            position: relative;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .challenge-text::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(45deg, #0099cc, #00cc99);
+        }
+
+        .challenge-text:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0, 102, 204, 0.12);
+        }
+
+        .challenge-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            text-align: center;
+        }
+
+        .challenge-text h3 {
+            color: #004499;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .challenge-text p {
+            line-height: 1.8;
+            color: #555;
+            text-align: justify;
+        }
+
+        .challenge-highlight {
+            background: linear-gradient(120deg, #fff5e6, #ffe6cc);
+            border: 1px solid #ffcc99;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            border-radius: 10px;
+            font-style: italic;
+            color: #cc6600;
+            text-align: center;
+            font-weight: 500;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 102, 204, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e6f3ff;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 102, 204, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .feature-card h3 {
+            color: #004499;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Process Steps - Horizontal Flow */
+        .workflow-steps {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 3rem;
+            overflow-x: auto;
+            padding: 1rem 0;
+        }
+
+        .step {
+            text-align: center;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #f0f8ff, #e6f3ff);
+            border-radius: 15px;
+            position: relative;
+            transition: all 0.3s ease;
+            min-width: 200px;
+            flex: 1;
+            max-width: 220px;
+        }
+
+        .step:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 102, 204, 0.15);
+        }
+
+        .step-number {
+            background: linear-gradient(45deg, #0099cc, #00cc99);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin: 0 auto 1rem;
+        }
+
+        .step h4 {
+            color: #004499;
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .step p {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .workflow-arrow {
+            font-size: 1.5rem;
+            color: #0099cc;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* Field Kit Components */
+        .kit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .kit-component {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0, 102, 204, 0.1);
+            border-left: 4px solid #0099cc;
+        }
+
+        .kit-component h4 {
+            color: #004499;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Blog Section */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .blog-post {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 102, 204, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e6f3ff;
+        }
+
+        .blog-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 102, 204, 0.15);
+        }
+
+        .blog-image {
+            height: 200px;
+            background: linear-gradient(135deg, #0066cc, #00cc99);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-date {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-title {
+            color: #004499;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .blog-excerpt {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Partners Grid */
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .partner-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 3px 15px rgba(0, 102, 204, 0.1);
+            text-align: center;
+            border: 2px dashed #cce6ff;
+            transition: all 0.3s ease;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .partner-card:hover {
+            border-color: #0099cc;
+            transform: translateY(-3px);
+        }
+
+        .partner-placeholder {
+            color: #999;
+            font-style: italic;
+        }
+
+        /* Call to Action Cards */
+        .cta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .cta-card {
+            background: linear-gradient(135deg, #004499, #0066cc);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .cta-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 102, 204, 0.3);
+        }
+
+        .cta-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .cta-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .cta-card p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer p {
+            margin-bottom: 1rem;
+            color: white;
+            line-height: 1.6;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .initiative-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .workflow-steps {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .workflow-arrow {
+                transform: rotate(90deg);
+                margin: 0.5rem 0;
+            }
+
+            .step {
+                min-width: 250px;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .advantages-grid {
+                flex-direction: column;
+            }
+
+            .advantage-item {
+                max-width: 100%;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .kit-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .video-controls {
+                display: none;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Scroll offset for fixed header */
+        .section {
+            scroll-margin-top: 80px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                🌊 MAC
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#initiative">Initiative</a></li>
+                    <li><a href="#challenge">Challenge</a></li>
+                    <li><a href="#approach">Approach</a></li>
+                    <li><a href="#workflow">Workflow</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#partners">Partners</a></li>
+                    <li><a href="#get-involved">Get Involved</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section with Video Background -->
+    <section class="hero">
+        <!-- Video Background -->
+        <video 
+            class="hero-video" 
+            autoplay 
+            muted 
+            loop 
+            playsinline 
+            preload="auto" 
+            id="heroVideo"
+        >
+            <source src="ocean-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        
+        <!-- Fallback background -->
+        <div class="hero-fallback"></div>
+        
+        <!-- Overlay for text readability -->
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content">
+            <h1>Marine AI Consortium</h1>
+            <p class="subtitle">Fostering Coastal Resilience and Ocean Stewardship through AI-Powered Biomonitoring and Citizen Engagement</p>
+            <a href="#initiative" class="cta-button">Discover Our Initiative</a>
+        </div>
+    </section>
+
+    <!-- Initiative Section -->
+    <section id="initiative" class="section">
+        <h2 class="section-title">The Initiative</h2>
+        <div class="initiative-grid">
+            <div class="initiative-text">
+                <p>The Marine AI Consortium (MAC) is a global alliance that unites AI technology with ocean research to develop open-source tools and best practices for AI-powered marine biodiversity monitoring.</p>
+                <br>
+                <p>Based at UC San Diego's Scripps Institution of Oceanography, MAC creates a student-focused, inclusive community where educators, students, and scientists work together to empower "citizen scientists" – everyday coastal stewards armed with low-cost technology – to protect coastal ecosystems and marine life.</p>
+            </div>
+            <div class="highlight vision-box">
+                <h3>Our Vision</h3>
+                <p>To establish open-source standards and best practices for AI-powered marine biomonitoring - enabling any coastal steward to deploy low-cost, validated sensors in local waters and get reliable data, even without advanced laboratories.</p>
+                <br>
+                <p><strong>"Precision Medicine" for the Ocean</strong> - tailored monitoring for each bay, estuary, and reef.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Challenge Section -->
+    <section id="challenge" class="section">
+        <h2 class="section-title">The Challenge: Why Ocean Monitoring Matters</h2>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">40%</div>
+                <div class="stat-label">of global population lives within 100km of coast</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">85%</div>
+                <div class="stat-label">of coastal areas are degraded by human activity</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">$1.5T</div>
+                <div class="stat-label">global ocean economy value (projected $3T by 2030)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">15%</div>
+                <div class="stat-label">of coastlines remain in natural state</div>
+            </div>
+        </div>
+
+        <div class="challenge-content">
+            <div class="challenge-text">
+                <span class="challenge-icon">🌡️</span>
+                <h3>Climate & Biodiversity Crisis</h3>
+                <p>Our oceans are experiencing unprecedented change. Rising temperatures, acidification, and deoxygenation are fundamentally altering marine ecosystems at rates never seen in human history.</p>
+                <div class="challenge-highlight">
+                    "Coral reefs have declined by 50% in just 30 years"
+                </div>
+                <p>Fish populations are migrating poleward, food webs are collapsing, and entire ecosystems face extinction. The ocean's capacity to support life and provide essential services to humanity hangs in the balance.</p>
+            </div>
+            
+            <div class="challenge-text">
+                <span class="challenge-icon">⚖️</span>
+                <h3>Monitoring Limitations</h3>
+                <p>Traditional marine research methods like trawling and diving surveys are expensive, time-intensive, and often invasive to the very ecosystems we're trying to protect.</p>
+                <div class="challenge-highlight">
+                    "A single research vessel costs $50,000+ per day"
+                </div>
+                <p>These approaches miss cryptic species, can't access remote locations, and provide only snapshots in time. Meanwhile, the ocean's biodiversity changes faster than we can track it.</p>
+            </div>
+            
+            <div class="challenge-text">
+                <span class="challenge-icon">📊</span>
+                <h3>Critical Data Gaps</h3>
+                <p>Without comprehensive monitoring, we're flying blind on conservation decisions. Data gaps prevent early detection of threats, hinder policy development, and limit our ability to measure conservation success.</p>
+                <div class="challenge-highlight">
+                    "Less than 5% of ocean biodiversity is regularly monitored"
+                </div>
+                <p>This information void undermines global commitments like the Global Biodiversity Framework and leaves coastal communities vulnerable to environmental surprises.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Approach & What We Do Section -->
+    <section id="approach" class="section">
+        <h2 class="section-title">Our Approach & What We Do</h2>
+        
+        <div class="approach-intro">
+            <p>MAC transforms marine biodiversity monitoring through innovative technology and community engagement. We combine cutting-edge environmental DNA analysis with artificial intelligence to democratize ocean science and empower the next generation of coastal stewards.</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="feature-icon">🧬</span>
+                <h3>Environmental DNA (eDNA)</h3>
+                <p>Detect multiple marine species from a single water sample, including cryptic, migratory, and rare organisms - without direct observation or capture. This revolutionary approach provides comprehensive biodiversity insights from minimal sampling effort.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🤖</span>
+                <h3>AI-Powered Analysis</h3>
+                <p>Artificial intelligence rapidly analyzes large volumes of eDNA data, identifying species patterns, flagging anomalies, and predicting ecological trends. Our cloud-based platform makes advanced analysis accessible to students and educators worldwide.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🌍</span>
+                <h3>Citizen Science Network</h3>
+                <p>Democratize biodiversity tracking by empowering communities to participate in data collection using accessible, low-cost technology. Build a global network of citizen scientists contributing to marine conservation.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">📚</span>
+                <h3>Educational Curriculum</h3>
+                <p>Comprehensive, open-source program guiding students through the full cycle of modern ocean biomonitoring - from sample collection to data visualization and scientific communication.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🛠️</span>
+                <h3>Technology Development</h3>
+                <p>Develop and refine portable field kits combining eDNA sampling, AI processing, and cloud-based analysis platforms. Make cutting-edge marine science tools accessible and affordable.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🔓</span>
+                <h3>Open-Source Standards</h3>
+                <p>Establish transparent protocols and software tools that ensure reliability, reproducibility, and accessibility across diverse settings. All data and methods are openly shared for global benefit.</p>
+            </div>
+        </div>
+
+        <div class="unique-advantages">
+            <h3>What Makes MAC Unique</h3>
+            <div class="advantages-grid">
+                <div class="advantage-item">
+                    <h4>Revolutionary Access</h4>
+                    <p>Breakthrough technology at student fingertips - transforming cutting-edge marine science from exclusive research labs into accessible classroom experiences.</p>
+                </div>
+                <div class="advantage-item">
+                    <h4>Global Impact</h4>
+                    <p>Local data feeds worldwide conservation efforts - every student sample contributes to global biodiversity tracking and international reporting frameworks.</p>
+                </div>
+                <div class="advantage-item">
+                    <h4>Future-Ready Skills</h4>
+                    <p>Students master AI, genomics, and data science through real ocean research - building expertise for tomorrow's conservation careers.</p>
+                </div>
+                <div class="advantage-item">
+                    <h4>Immediate Results</h4>
+                    <p>See biodiversity discoveries in real-time, not months later - instant gratification fuels sustained engagement and scientific curiosity.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Theory of Change -->
+        <div class="theory-of-change-container">
+            <h3>Theory of Change: From Challenge to Impact</h3>
+            <p style="text-align: center; margin-bottom: 2rem; color: #666;">How community-driven marine biomonitoring creates lasting change</p>
+            
+            <div class="theory-flow">
+                <div class="toc-stage-horizontal baseline">
+                    <div class="toc-stage-number">1</div>
+                    <h4>BASELINE</h4>
+                    <ul>
+                        <li>Declining marine biodiversity</li>
+                        <li>Expensive traditional monitoring</li>
+                        <li>Critical data gaps</li>
+                        <li>Limited youth engagement</li>
+                    </ul>
+                </div>
+
+                <div class="flow-arrow">→</div>
+
+                <div class="toc-stage-horizontal inputs">
+                    <div class="toc-stage-number">2</div>
+                    <h4>INPUTS</h4>
+                    <ul>
+                        <li>Biodiversity monitoring tools</li>
+                        <li>Student curriculum</li>
+                        <li>Educator training</li>
+                        <li>International partnerships</li>
+                    </ul>
+                </div>
+
+                <div class="flow-arrow">→</div>
+
+                <div class="toc-stage-horizontal activities">
+                    <div class="toc-stage-number">3</div>
+                    <h4>ACTIVITIES</h4>
+                    <ul>
+                        <li>eDNA sample collection</li>
+                        <li>AI-based analysis</li>
+                        <li>Local biodiversity dashboards</li>
+                        <li>Scientific communication</li>
+                    </ul>
+                </div>
+
+                <div class="flow-arrow">→</div>
+
+                <div class="toc-stage-horizontal outputs">
+                    <div class="toc-stage-number">4</div>
+                    <h4>OUTPUTS</h4>
+                    <ul>
+                        <li>Open biodiversity datasets</li>
+                        <li>Trained citizen scientists</li>
+                        <li>School monitoring networks</li>
+                        <li>Scientific publications</li>
+                    </ul>
+                </div>
+
+                <div class="flow-arrow">→</div>
+
+                <div class="toc-stage-horizontal outcomes">
+                    <div class="toc-stage-number">5</div>
+                    <h4>OUTCOMES</h4>
+                    <ul>
+                        <li>Enhanced coastal monitoring</li>
+                        <li>Increased scientific literacy</li>
+                        <li>National eDNA networks</li>
+                        <li>Youth ocean stewards</li>
+                    </ul>
+                </div>
+
+                <div class="flow-arrow">→</div>
+
+                <div class="toc-stage-horizontal impact">
+                    <div class="toc-stage-number">6</div>
+                    <h4>IMPACT</h4>
+                    <ul>
+                        <li>Coastal resilience</li>
+                        <li>Informed policy decisions</li>
+                        <li>Global biodiversity goals</li>
+                        <li>Empowered communities</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Student Workflow Section -->
+    <section id="workflow" class="section">
+        <h2 class="section-title">Student Workflow: From Sample to Insight</h2>
+        <p style="text-align: center; font-size: 1.1rem; margin-bottom: 3rem;">
+            Our curriculum transforms students into citizen scientist ocean stewards through hands-on experience
+        </p>
+        
+        <div class="workflow-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h4>Field Collection</h4>
+                <p>Students collect water samples containing eDNA from local waters using portable field kits</p>
+            </div>
+            
+            <div class="workflow-arrow">→</div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <h4>Lab Processing</h4>
+                <p>Filter water and extract DNA with simple kits, guided by mentors for proper technique</p>
+            </div>
+            
+            <div class="workflow-arrow">→</div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <h4>DNA Sequencing</h4>
+                <p>Use handheld Oxford Nanopore sequencer to read DNA samples in real-time</p>
+            </div>
+            
+            <div class="workflow-arrow">→</div>
+            
+            <div class="step">
+                <div class="step-number">4</div>
+                <h4>Cloud Analysis</h4>
+                <p>Upload data to UCSD-hosted cloud lab for AI-powered species identification</p>
+            </div>
+            
+            <div class="workflow-arrow">→</div>
+            
+            <div class="step">
+                <div class="step-number">5</div>
+                <h4>Data Visualization</h4>
+                <p>Create biodiversity dashboards and mini-papers to share findings publicly</p>
+            </div>
+        </div>
+
+        <div style="margin-top: 4rem;">
+            <h3 style="color: #004499; margin-bottom: 2rem; text-align: center;">Field Kit Components</h3>
+            <div class="kit-grid">
+                <div class="kit-component">
+                    <h4>NVIDIA Jetson</h4>
+                    <p>Mini AI computer serving as the kit's brain, running AI models and processing sensor data on-site</p>
+                </div>
+                <div class="kit-component">
+                    <h4>Oxford Nanopore Sequencer</h4>
+                    <p>Handheld DNA sequencer (e.g. MinION) for real-time genetic analysis in the field</p>
+                </div>
+                <div class="kit-component">
+                    <h4>Starlink Uplink</h4>
+                    <p>Portable satellite internet unit providing off-grid connectivity for immediate data upload</p>
+                </div>
+                <div class="kit-component">
+                    <h4>UCSD Cloud Lab</h4>
+                    <p>JupyterHub platform giving students personal notebook workspaces for analysis</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="section">
+        <h2 class="section-title">Blog & Current Pilots</h2>
+        <div class="blog-grid">
+            <article class="blog-post">
+                <div class="blog-image">🏫</div>
+                <div class="blog-content">
+                    <div class="blog-date">March 2025</div>
+                    <h3 class="blog-title">San Diego Pilot Success: High Schoolers Discover Local Marine Biodiversity</h3>
+                    <p class="blog-excerpt">Students partnered with Scripps mentors to sample La Jolla's waters, identifying dozens of local species and presenting their findings to the scientific community.</p>
+                </div>
+            </article>
+            
+            <article class="blog-post">
+                <div class="blog-image">🌊</div>
+                <div class="blog-content">
+                    <div class="blog-date">February 2025</div>
+                    <h3 class="blog-title">LAUSD Integration: Marine Science Curriculum Goes Live</h3>
+                    <p class="blog-excerpt">Los Angeles students integrated MAC's program into their marine science course, including field trips to Santa Monica Pier for hands-on eDNA collection.</p>
+                </div>
+            </article>
+            
+            <article class="blog-post">
+                <div class="blog-image">🔬</div>
+                <div class="blog-content">
+                    <div class="blog-date">January 2025</div>
+                    <h3 class="blog-title">Venice High School Pilot Launch</h3>
+                    <p class="blog-excerpt">New pilot program launched with Venice High School, expanding our reach and testing curriculum adaptations for diverse coastal environments.</p>
+                </div>
+            </article>
+            
+            <article class="blog-post">
+                <div class="blog-image">🎓</div>
+                <div class="blog-content">
+                    <div class="blog-date">December 2024</div>
+                    <h3 class="blog-title">WASC Accreditation Progress: Making MAC Credit-Worthy</h3>
+                    <p class="blog-excerpt">Updates on our pursuit of official accreditation to offer MAC curriculum for credit in high schools across California and beyond.</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="section">
+        <h2 class="section-title">Our Team</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="team-photo">SW</div>
+                <div class="team-info">
+                    <h4>Simona Weber</h4>
+                    <p class="team-role">Project Lead</p>
+                    <p class="team-org">United Nations Environment Programme (UNEP FI)</p>
+                    <p class="team-description">Leading curriculum vision and global sustainability frameworks integration. Brings extensive experience in environmental policy and international cooperation to drive MAC's mission forward.</p>
+                    <p class="team-contact"><a href="mailto:simona.weber@un.org">simona.weber@un.org</a></p>
+                </div>
+            </div>
+            
+            <div class="team-member">
+                <div class="team-photo">SB</div>
+                <div class="team-info">
+                    <h4>Stanley Bishop</h4>
+                    <p class="team-role">Scientific Coordinator</p>
+                    <p class="team-org">UC Los Angeles, NewAtlantis Labs</p>
+                    <p class="team-description">Overseeing technology development and scientific methodology. Expertise in marine AI applications and citizen science program design ensures robust and scalable solutions.</p>
+                    <p class="team-contact"><a href="mailto:stanley@newatlantis.io">stanley@newatlantis.io</a></p>
+                </div>
+            </div>
+            
+            <div class="team-member">
+                <div class="team-photo">FF</div>
+                <div class="team-info">
+                    <h4>Fabio Favoretto</h4>
+                    <p class="team-role">Operations & Partnerships</p>
+                    <p class="team-org">Scripps Institution of Oceanography (UCSD)</p>
+                    <p class="team-description">Managing research coordination and strategic partnerships. Connects MAC with leading marine science institutions and ensures seamless integration with existing research networks.</p>
+                    <p class="team-contact"><a href="mailto:ffavoretto@ucsd.edu">ffavoretto@ucsd.edu</a></p>
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: linear-gradient(135deg, #f0f8ff, #e6f3ff); border-radius: 15px;">
+            <h3 style="color: #004499; margin-bottom: 1rem;">Join Our Growing Team</h3>
+            <p style="color: #666; line-height: 1.6;">MAC is actively seeking passionate researchers, educators, and technologists to join our mission. We welcome collaborators from diverse backgrounds who share our vision of democratizing ocean science and empowering coastal communities worldwide.</p>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section id="partners" class="section">
+        <h2 class="section-title">Our Partners</h2>
+        <div class="partners-grid">
+            <div class="partner-card">
+                <div class="partner-placeholder">Partner Logo & Description</div>
+            </div>
+            <div class="partner-card">
+                <div class="partner-placeholder">Partner Logo & Description</div>
+            </div>
+            <div class="partner-card">
+                <div class="partner-placeholder">Partner Logo & Description</div>
+            </div>
+            <div class="partner-card">
+                <div class="partner-placeholder">Partner Logo & Description</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Get Involved Section -->
+    <section id="get-involved" class="section">
+        <h2 class="section-title">Get Involved</h2>
+        <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem; color: #666;">
+            MAC invites you to join our mission - there's a role for everyone in building the future of ocean stewardship
+        </p>
+        
+        <div class="cta-grid">
+            <div class="cta-card">
+                <span class="cta-icon">💰</span>
+                <h3>Fund</h3>
+                <p>Donate or sponsor equipment and student cohorts. Your support brings cutting-edge ocean science to communities worldwide and helps democratize marine research.</p>
+            </div>
+            <div class="cta-card">
+                <span class="cta-icon">👨‍🏫</span>
+                <h3>Mentor</h3>
+                <p>Volunteer as a mentor to guide student teams through projects. Share your expertise and inspire the next generation of ocean scientists and environmental stewards.</p>
+            </div>
+            <div class="cta-card">
+                <span class="cta-icon">🏫</span>
+                <h3>Host</h3>
+                <p>Help a school or community group adopt our curriculum. MAC provides comprehensive tools, training, and ongoing support for successful implementation.</p>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 4rem; padding: 3rem; background: linear-gradient(135deg, #f0f8ff, #e6f3ff); border-radius: 15px;">
+            <h3 style="color: #004499; margin-bottom: 1rem;">Ready to Make Waves?</h3>
+            <p style="color: #666; line-height: 1.6; margin-bottom: 2rem;">Join the Marine AI Consortium and help democratize ocean science education worldwide. Together, we can empower the next generation of ocean stewards.</p>
+            <a href="mailto:info@marineai.org" class="cta-button">Contact Us Today</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3>Marine AI Consortium</h3>
+            <p>Empowering coastal communities through AI-powered marine biodiversity monitoring</p>
+            <p>Based at UC San Diego's Scripps Institution of Oceanography</p>
+            <p>&copy; 2025 Marine AI Consortium. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Video Setup - Using Working Farm Code
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.getElementById('heroVideo');
+            
+            if (video) {
+                console.log('Video element found');
+                
+                video.addEventListener('loadeddata', function() {
+                    console.log('Video loaded successfully');
+                    video.play().catch(function(error) {
+                        console.log('Autoplay prevented (normal):', error);
+                    });
+                });
+                
+                video.addEventListener('error', function(e) {
+                    console.log('Video error:', e);
+                    console.log('Video failed to load, showing fallback background');
+                    this.style.display = 'none';
+                });
+                
+                // Force load
+                video.load();
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
+    
