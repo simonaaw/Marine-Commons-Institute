@@ -206,42 +206,42 @@
             border-left: 4px solid #0099cc;
         }
 
-.vision-box {
-    position: relative;
-    background: linear-gradient(120deg, #e6f3ff, #cce6ff);
+.highlight.vision-box {
+    position: relative !important;
+    background: linear-gradient(120deg, #e6f3ff, #cce6ff) !important;
     padding: 2rem;
     border-radius: 15px;
     border-left: 4px solid #0099cc;
     overflow: hidden;
 }
 
-.vision-box::before {
-    content: '';
+.highlight.vision-box::before {
+    content: '' !important;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('https://simonaaw.github.io/Marine-Commons-Institute/box1.jpg');
+    background-image: url('https://simonaaw.github.io/Marine-Commons-Institute/box1.jpg') !important;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.3;
+    opacity: 0.5 !important;
     z-index: 1;
 }
 
-.vision-box::after {
-    content: '';
+.highlight.vision-box::after {
+    content: '' !important;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(120deg, rgba(230, 243, 255, 0.8), rgba(204, 230, 255, 0.8));
+    background: linear-gradient(120deg, rgba(230, 243, 255, 0.7), rgba(204, 230, 255, 0.7)) !important;
     z-index: 2;
 }
 
-.vision-box > * {
+.highlight.vision-box > * {
     position: relative;
     z-index: 3;
 }
