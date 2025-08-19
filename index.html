@@ -206,28 +206,45 @@
             border-left: 4px solid #0099cc;
         }
 
-        .vision-box {
-            position: relative;
-            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="100%" height="100%" fill="%23e6f3ff"/><circle cx="80" cy="60" r="20" fill="%23cce6ff" opacity="0.3"/><circle cx="320" cy="180" r="30" fill="%23b3d9ff" opacity="0.3"/><path d="M0,150 Q100,100 200,150 T400,150" stroke="%23b3d9ff" stroke-width="2" fill="none" opacity="0.4"/></svg>');
-            background-size: cover;
-            background-position: center;
-        }
+.vision-box {
+    position: relative;
+    background: linear-gradient(120deg, #e6f3ff, #cce6ff);
+    padding: 2rem;
+    border-radius: 15px;
+    border-left: 4px solid #0099cc;
+    overflow: hidden;
+}
 
-        .vision-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(230, 243, 255, 0.8);
-            border-radius: 15px;
-        }
+.vision-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('https://simonaaw.github.io/Marine-Commons-Institute/box1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.3;
+    z-index: 1;
+}
 
-        .vision-box > * {
-            position: relative;
-            z-index: 1;
-        }
+.vision-box::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(120deg, rgba(230, 243, 255, 0.8), rgba(204, 230, 255, 0.8));
+    z-index: 2;
+}
+
+.vision-box > * {
+    position: relative;
+    z-index: 3;
+}
 
         /* Challenge Stats */
         .stats-grid {
